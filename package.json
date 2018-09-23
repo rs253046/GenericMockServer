@@ -1,0 +1,40 @@
+{
+  "name": "mock-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "export NODE_ENV=development && babel-node bin/server.js",
+    "debug": "babel-node --inspect=9222 bin/server.js",
+    "build": "chmod +x ./lib/buildScripts/shell.sh && ./lib/buildScripts/shell.sh"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^1.4.2",
+    "axios": "^0.18.0",
+    "babel-cli": "*",
+    "babel-core": "*",
+    "babel-loader": "*",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-latest": "*",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "*",
+    "body-parser": "^1.18.3",
+    "busboy": "^0.2.9",
+    "canvas": "^1.6.11",
+    "connect-busboy": "0.0.2",
+    "easyimage": "^2.0.3",
+    "express": "^4.13.3",
+    "express-handlebars": "^2.0.1",
+    "lodash": "^3.10.1",
+    "mongoose": "^5.2.12",
+    "multer": "^1.0.3",
+    "nedb": "^1.8.0",
+    "rxjs": "^6.1.0",
+    "socket.io": "1.2.1",
+    "socket.io-client": "^2.1.1"
+  }
+}
