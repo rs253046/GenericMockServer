@@ -1,3 +1,4 @@
 node_modules/
 .tmps/
 build/
+lib/database/__mocks__/

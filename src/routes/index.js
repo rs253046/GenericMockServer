@@ -2,6 +2,8 @@ import config from '../../config/environment';
 import exphbs from 'express-handlebars';
 import express from 'express';
 import userRoute from './users/userRoute';
+import chalk from 'chalk';
+
 class Routes {
   constructor() { }
 
@@ -29,24 +31,40 @@ class Routes {
       res.send(500, { message: err.message });
     });
 
-    //Handle any routes that are unhandled and return 404
-    // app.use(function(req, res, next) {
-    //   const err = new Error('Not Found');
-    //   err.status = 404;
-    //   res.render('errors/404', err);
+    app.use(function (req, res, next) {
+      console.log(chalk.yellow('Time: ' + Date.now() + ' ' + 'Route: ' +  req.url));
+      next()
+    });
+
+
+    // Handle any routes that are unhandled and return 404
+
+
+    // app.use(function( req, res, next) {
+    //   console.log(res);
+    //   if (res.status === 404) {
+    //     const err = new Error('Not Found');
+    //     err.status = 404;
+    //     res.render('errors/404', err);
+    //   }
+    //   next();
     // });
   }
 
   configureCors(app) {
     app.use((req, res, next) => {
       res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With,Cache-Control, Content-Type, Accept, authorization, Pragma");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With,Cache-Control, Content-Type, Accept, authorization, Pragma, contentType");
       next();
     });
   }
 
   create(app, db, ioSocket) {
-    app.use('/user', userRoute(db));
+    app.use(this.resolveRoute('/user'), userRoute(db));
+  }
+
+  resolveRoute(route) {
+    return config.namespace + route;
   }
 }
 

@@ -5,7 +5,7 @@ export default class UserController {
   }
 
   get(req, res) {
-    this.db.metadata.findOne({}, function(err, docs) {
+    this.db.user.findOne({}, function(err, docs) {
         res.status(200).json(docs.data);
     });
   }
